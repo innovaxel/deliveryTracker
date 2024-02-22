@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PILOT Order Tracking</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+        .search-input {
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .search-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .hero-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px;
+            background-color: #FFD700;
+        }
+        .hero-content {
+            width: 50%;
+        }
+        .hero-images {
+            width: 45%;
+            overflow: hidden;
+        }
+        .image-slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .parcel-tracking-section {
+            text-align: center;
+            padding: 50px;
+            background-color: #f5f5f5;
+        }
+        .essential-section {
+            text-align: center;
+            padding: 50px;
+            background-color: #e0e0e0;
+        }
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">PILOT</div>
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search...">
+            <button class="search-button">Search</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1>Welcome to PILOT Order Tracking</h1>
+            <p>Track your parcels with ease and precision.</p>
+        </div>
+        <div class="hero-images">
+            <div class="image-slider">
+                <!-- Add your sliding images here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Parcel Tracking Section -->
+    <div class="parcel-tracking-section">
+        <h2>Track Your Parcel</h2>
+        <form method="post" action="{% url 'search_order' %}">
+            {% csrf_token %}
+            <input type="text" name="tracking_id" placeholder="Enter Tracking ID" required>
+            <button type="submit">Track</button>
+        </form>
+    </div>
+
+    <!-- Essential Section -->
+    <div class="essential-section"><div class="essential-section">
+        <div>
+            <h2>Why Choose Us?</h2>
+            <p>We provide a seamless and reliable parcel tracking experience. Here's why you should choose PILOT:</p>
+            <ul>
+                <li>Fast and Accurate Tracking</li>
+                <li>Secure and Efficient Delivery Services</li>
+                <li>24/7 Customer Support</li>
+            </ul>
+        </div>
+    
+        <div>
+            <h2>FAQs</h2>
+            <div>
+                <h3>How can I track my parcel?</h3>
+                <p>Simply enter your tracking ID in the search bar above, and click "Track."</p>
+            </div>
+            <div>
+                <h3>Is my personal information secure?</h3>
+                <p>Yes, we prioritize the security of your information. Your data is encrypted and handled with utmost care.</p>
+            </div>
+            <div>
+                <h3>What if I encounter issues with tracking?</h3>
+                <p>Contact our support team at support@pilottracking.com for assistance.</p>
+            </div>
+        </div>
+    
+        <!-- Add more relevant sections as needed -->
+    
+    </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>PILOT &copy; 2024</p>
+        <p>Locations: [Your Locations]</p>
+        <p>Socials: [Your Social Handles]</p>
+    </div>
+
+</body>
+</html>

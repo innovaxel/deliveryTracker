@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Order</title>
+    <style>
+        body {
+            background-color: #FFD700; /* Yellow color */
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50; /* Green color for the submit button */
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add Order</h1>
+        <form method="post">
+            {% csrf_token %}
+            <label for="order_date">Order Date:</label>
+            <input type="date" id="order_date" name="order_date" required>
+
+            <label for="sender_name">Sender Name:</label>
+            <input type="text" id="sender_name" name="sender_name" required>
+
+            <label for="sender_address">Sender Address:</label>
+            <textarea id="sender_address" name="sender_address" required></textarea>
+
+            <label for="receiver_name">Receiver Name:</label>
+            <input type="text" id="receiver_name" name="receiver_name" required>
+
+            <label for="receiver_address">Receiver Address:</label>
+            <textarea id="receiver_address" name="receiver_address" required></textarea>
+
+            <label for="receiver_email">Receiver Email:</label>
+            <input type="email" id="receiver_email" name="receiver_email" required>
+
+            <label for="receiver_phone">Receiver Phone:</label>
+            <input type="tel" id="receiver_phone" name="receiver_phone" required>
+
+            <input type="submit" value="Submit Order">
+        </form>
+
+        {% if order_submitted %}
+            <h1>Order Submitted</h1>
+        {% endif %}
+    </div>
+</body>
+</html>
