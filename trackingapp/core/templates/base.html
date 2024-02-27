@@ -25,10 +25,13 @@
   <nav class="bg-[#333333] flex flex-row py-4 px-10 justify-between">
     <h1 class="text-2xl text-white">
       PILOT</h1>
-    <div class="flex flex-row gap-2">
-      <input type="text" id="name" placeholder="Search"
-        class="block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-1 px-3 block appearance-none leading-normal focus:border-blue-400">
-      <button class="bg-[#FFD700] px-3 py-1 rounded-lg">Search</button>
+    <div>
+      <form method="post" action="{% url 'search_order' %}" class="flex flex-row gap-2">
+        {% csrf_token %}
+        <input type="text" id="tracking_id" placeholder="tracking_id" name="tracking_id"
+          class="block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-1 px-3 block appearance-none leading-normal focus:border-blue-400">
+        <button class="bg-[#FF4B00] text-white py-1 px-4 rounded-lg">Search</button>
+      </form>
     </div>
 
   </nav>

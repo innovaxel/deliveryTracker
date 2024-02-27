@@ -5,6 +5,9 @@ import string
 from django.shortcuts import render
 from .models import OrderTrack
 
+from trackingapp.settings import *
+from .utils import send_email
+
 # Create your views here.
 
 
@@ -43,6 +46,24 @@ def add_order(request):
             tracking_id=tracking_id,
         )
         order.save()
+
+        subject = "Your Order has been placed"
+        email_body = f"""
+        <html>
+        <body style="font-family: Arial, sans-serif; font-size: 16px; color: black;">
+            <h1 style="color: #002600;">Your Order has been placed.</h1>
+            <h2>Your Tracking Id : {tracking_id}</h2>
+            <p>Please visit this link to track your order. </p>
+            <p>Have a Great Day.</p>
+            <p>Team PILOT</p>
+        </body>
+        </html>
+        """
+
+        sender = EMAIL_HOST_USER
+        recipients = [receiver_email]
+        password = EMAIL_HOST_PASSWORD
+        send_email(subject, email_body, sender, recipients, password)
         return render(request, "addOrder.html", {"order_submitted": True})
     return render(request, "addOrder.html", {"order_submitted": False})
 

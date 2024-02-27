@@ -6,10 +6,10 @@
 {% block content %}
 <div>
     <!-- Hero Section -->
-    <div class="flex flex-col md:flex-row justify-center items-center gap-4 bg-[#FFD700] py-10 px-32">
-        <div class="w-full md:w-1/2 text-center md:text-left">
+    <div class="flex flex-col md:flex-row justify-center items-center gap-4 bg-[#FF4B00] py-10 px-32">
+        <div class="w-full md:w-1/2 text-center md:text-left my-8">
             <h1 class="text-white text-5xl font-bold">Welcome to PILOT <br /> Order Tracking</h1>
-            <p class="text-black mt-1">Track your parcels with ease and precision. Whether you're eagerly awaiting a
+            <p class="text-white mt-1">Track your parcels with ease and precision. Whether you're eagerly awaiting a
                 special
                 delivery or keeping
                 a close eye on your shipments, our user-friendly tracking system ensures that you stay informed every
@@ -20,7 +20,7 @@
         </div>
         <div class="w-full md:w-1/2 flex justify-center md:justify-end">
             <div class="image-slider">
-                <img src="{% static 'images/banner.png' %}" alt="Parcel 1" class="w-80 h-80">
+                <img src="{% static 'images/banner-2.jpeg' %}" alt="Parcel 1" class="w-full h-72">
             </div>
         </div>
     </div>
@@ -34,34 +34,40 @@
             <input type="text" id="tracking_id" placeholder="tracking_id" name="tracking_id"
                 class="w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-1 px-3 block appearance-none leading-normal focus:border-blue-400">
             <input type="submit" value="Track Order"
-                class="w-full bg-[#FFD700] mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md cursor-pointer">
+                class="w-full bg-[#FF4B00] mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md cursor-pointer">
         </form>
         {% if order %}
-        <div class="mt-8 w-4/5">
+        <div class="mt-8 px-12">
             <h3 class="text-2xl font-semibold mb-4">Order Details for Tracking ID: {{ tracking_id }}</h3>
 
             <table class="table-auto w-full">
                 <thead class="bg-[#333333] text-white rounded-t-lg">
                     <tr>
-                        <th class="px-4 py-2">Order ID</th>
-                        <th class="px-4 py-2">Tracking ID</th>
-                        <th class="px-4 py-2">Order Date</th>
-                        <th class="px-4 py-2">Receiver Name</th>
-                        <th class="px-4 py-2">Receiver Address</th>
-                        <th class="px-4 py-2">Receiver Email</th>
-                        <th class="px-4 py-2">Receiver Phone</th>
+                        <th class="px-2 py-1">Order ID</th>
+                        <th class="px-2 py-1">Tracking ID</th>
+                        <th class="px-2 py-1">Order Date</th>
+                        <th class="px-2 py-1">Receiver Name</th>
+                        <th class="px-2 py-1">Receiver Address</th>
+                        <th class="px-2 py-1">Receiver Email</th>
+                        <th class="px-2 py-1">Sender Name</th>
+                        <th class="px-2 py-1">Sender Address</th>
+                        <th class="px-2 py-1">Sender Email</th>
+                        <th class="px-2 py-1">Receiver Phone</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for item in order %}
                     <tr>
-                        <td class="border px-4 py-2">{{ item.order_id }}</td>
-                        <td class="border px-4 py-2">{{ item.tracking_id }}</td>
-                        <td class="border px-4 py-2">{{ item.order_date }}</td>
-                        <td class="border px-4 py-2">{{ item.receiver_name }}</td>
-                        <td class="border px-4 py-2">{{ item.receiver_address }}</td>
-                        <td class="border px-4 py-2">{{ item.receiver_email }}</td>
-                        <td class="border px-4 py-2">{{ item.receiver_phone }}</td>
+                        <td class="border px-2 py-1">{{ item.order_id }}</td>
+                        <td class="border px-2 py-1">{{ item.tracking_id }}</td>
+                        <td class="border px-2 py-1">{{ item.order_date }}</td>
+                        <td class="border px-2 py-1">{{ item.receiver_name }}</td>
+                        <td class="border px-2 py-1">{{ item.receiver_address }}</td>
+                        <td class="border px-2 py-1">{{ item.receiver_email }}</td>
+                        <td class="border px-2 py-1">{{ item.sender_name }}</td>
+                        <td class="border px-2 py-1">{{ item.sender_address }}</td>
+                        <td class="border px-2 py-1">{{ item.receiver_email }}</td>
+                        <td class="border px-2 py-1">{{ item.receiver_phone }}</td>
                         <!-- Add other fields as needed -->
                     </tr>
                     {% endfor %}
@@ -82,15 +88,15 @@
         </div>
         <ul class="flex flex-row gap-8">
             <li class="bg-gray-100 rounded-full flex flex-col justify-center items-center gap-4 h-56 w-56">
-                <i class="fas fa-shipping-fast text-[#FFD700] text-5xl"></i>
+                <i class="fas fa-shipping-fast text-[#FF4B00] text-5xl"></i>
                 <span class="text-center text-[#333333] text-lg font-semibold">Swift Tracking</span>
             </li>
             <li class="bg-gray-100 rounded-full flex flex-col justify-center items-center gap-4 h-56 w-56">
-                <i class="fa-solid fa-shield-halved text-[#FFD700] text-5xl"></i>
+                <i class="fa-solid fa-shield-halved text-[#FF4B00] text-5xl"></i>
                 <span class="text-center text-[#333333] text-lg font-semibold">Secure Delivery</span>
             </li>
             <li class="bg-gray-100 rounded-full flex flex-col justify-center items-center gap-4 h-56 w-56">
-                <i class="far fa-clock text-[#FFD700] text-5xl"></i>
+                <i class="far fa-clock text-[#FF4B00] text-5xl"></i>
                 <span class="text-center text-[#333333] text-lg font-semibold">24/7 Support</span>
             </li>
         </ul>
