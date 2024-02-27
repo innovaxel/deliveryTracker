@@ -23,6 +23,7 @@ def add_order(request):
     This view is used to add an order to the database
     """
     if request.method == "POST":
+        print("here")
         order_date = request.POST.get("order_date")
         sender_name = request.POST.get("sender_name")
         sender_address = request.POST.get("sender_address")
@@ -52,7 +53,13 @@ def search_order(request):
     This view is used to search for an order in the database
     """
     if request.method == "POST":
-        tracking_id = request.POST.get("tracking_id")
+        # get the tracking id from the form
+        data = request.POST
+        tracking_id = data["tracking_id"]
+        print("tracking_id", tracking_id)
+
         order = OrderTrack.objects.filter(tracking_id=tracking_id)
-        return render(request, "searchOrder.html", {"order": order})
+        print("order", order)
+        return render(request, "searchOrder.html", {"order": order, "tracking_id": tracking_id})
+
     return render(request, "searchOrder.html")

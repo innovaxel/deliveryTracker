@@ -1,155 +1,163 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PILOT Order Tracking</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        nav {
-            background-color: #333;
-            color: white;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo {
-            font-size: 1.5em;
-            font-weight: bold;
-        }
-        .search-container {
-            display: flex;
-            align-items: center;
-        }
-        .search-input {
-            padding: 8px;
-            border: none;
-            border-radius: 5px;
-            margin-right: 10px;
-        }
-        .search-button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .hero-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 50px;
-            background-color: #FFD700;
-        }
-        .hero-content {
-            width: 50%;
-        }
-        .hero-images {
-            width: 45%;
-            overflow: hidden;
-        }
-        .image-slider {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-        .parcel-tracking-section {
-            text-align: center;
-            padding: 50px;
-            background-color: #f5f5f5;
-        }
-        .essential-section {
-            text-align: center;
-            padding: 50px;
-            background-color: #e0e0e0;
-        }
-        .footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-    </style>
-</head>
-<body>
+<!-- load static -->
+{% extends "base.html" %}
+{% load static %}
 
-    <!-- Navigation Bar -->
-    <nav>
-        <div class="logo">PILOT</div>
-        <div class="search-container">
-            <input type="text" class="search-input" placeholder="Search...">
-            <button class="search-button">Search</button>
-        </div>
-    </nav>
 
+{% block content %}
+<div>
     <!-- Hero Section -->
-    <div class="hero-section">
-        <div class="hero-content">
-            <h1>Welcome to PILOT Order Tracking</h1>
-            <p>Track your parcels with ease and precision.</p>
+    <div class="flex flex-col md:flex-row justify-center items-center gap-4 bg-[#FFD700] py-10 px-32">
+        <div class="w-full md:w-1/2 text-center md:text-left">
+            <h1 class="text-white text-5xl font-bold">Welcome to PILOT <br /> Order Tracking</h1>
+            <p class="text-black mt-1">Track your parcels with ease and precision. Whether you're eagerly awaiting a
+                special
+                delivery or keeping
+                a close eye on your shipments, our user-friendly tracking system ensures that you stay informed every
+                step of the way. Experience the convenience of real-time updates and accurate status information, making
+                your parcel tracking journey seamless and worry-free. At PILOT, we prioritize transparency and
+                efficiency, providing you with the tools to effortlessly monitor your orders and receive them with
+                confidence.</p>
         </div>
-        <div class="hero-images">
+        <div class="w-full md:w-1/2 flex justify-center md:justify-end">
             <div class="image-slider">
-                <!-- Add your sliding images here -->
+                <img src="{% static 'images/banner.png' %}" alt="Parcel 1" class="w-80 h-80">
             </div>
         </div>
     </div>
 
+
     <!-- Parcel Tracking Section -->
-    <div class="parcel-tracking-section">
-        <h2>Track Your Parcel</h2>
-        <form method="post" action="{% url 'search_order' %}">
+    <div class="flex flex-col justify-center items-center py-12 bg-gray-100">
+        <h2 class="text-2xl font-bold text-[#333333] mb-2">Track Your Parcel</h2>
+        <form method="post" action="{% url 'search_order' %}" class="mb-7">
             {% csrf_token %}
-            <input type="text" name="tracking_id" placeholder="Enter Tracking ID" required>
-            <button type="submit">Track</button>
+            <input type="text" id="tracking_id" placeholder="tracking_id" name="tracking_id"
+                class="w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-1 px-3 block appearance-none leading-normal focus:border-blue-400">
+            <input type="submit" value="Track Order"
+                class="w-full bg-[#FFD700] mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md cursor-pointer">
         </form>
+        {% if order %}
+        <div class="mt-8 w-4/5">
+            <h3 class="text-2xl font-semibold mb-4">Order Details for Tracking ID: {{ tracking_id }}</h3>
+
+            <table class="table-auto w-full">
+                <thead class="bg-[#333333] text-white rounded-t-lg">
+                    <tr>
+                        <th class="px-4 py-2">Order ID</th>
+                        <th class="px-4 py-2">Tracking ID</th>
+                        <th class="px-4 py-2">Order Date</th>
+                        <th class="px-4 py-2">Receiver Name</th>
+                        <th class="px-4 py-2">Receiver Address</th>
+                        <th class="px-4 py-2">Receiver Email</th>
+                        <th class="px-4 py-2">Receiver Phone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in order %}
+                    <tr>
+                        <td class="border px-4 py-2">{{ item.order_id }}</td>
+                        <td class="border px-4 py-2">{{ item.tracking_id }}</td>
+                        <td class="border px-4 py-2">{{ item.order_date }}</td>
+                        <td class="border px-4 py-2">{{ item.receiver_name }}</td>
+                        <td class="border px-4 py-2">{{ item.receiver_address }}</td>
+                        <td class="border px-4 py-2">{{ item.receiver_email }}</td>
+                        <td class="border px-4 py-2">{{ item.receiver_phone }}</td>
+                        <!-- Add other fields as needed -->
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+    </div>
+
+
+    <div class="flex flex-col justify-center items-center gap-6 py-12">
+        <div class="text-center">
+            <h2 class="text-2xl font-bold text-[#333333]">Why Choose Us?</h2>
+            <p class="text-center text-lg text-[#333333]">We provide a seamless and reliable parcel tracking experience.
+                Here's why you should choose PILOT:
+            </p>
+        </div>
+        <ul class="flex flex-row gap-8">
+            <li class="bg-gray-100 rounded-full flex flex-col justify-center items-center gap-4 h-56 w-56">
+                <i class="fas fa-shipping-fast text-[#FFD700] text-5xl"></i>
+                <span class="text-center text-[#333333] text-lg font-semibold">Swift Tracking</span>
+            </li>
+            <li class="bg-gray-100 rounded-full flex flex-col justify-center items-center gap-4 h-56 w-56">
+                <i class="fa-solid fa-shield-halved text-[#FFD700] text-5xl"></i>
+                <span class="text-center text-[#333333] text-lg font-semibold">Secure Delivery</span>
+            </li>
+            <li class="bg-gray-100 rounded-full flex flex-col justify-center items-center gap-4 h-56 w-56">
+                <i class="far fa-clock text-[#FFD700] text-5xl"></i>
+                <span class="text-center text-[#333333] text-lg font-semibold">24/7 Support</span>
+            </li>
+        </ul>
+
     </div>
 
     <!-- Essential Section -->
-    <div class="essential-section"><div class="essential-section">
-        <div>
-            <h2>Why Choose Us?</h2>
-            <p>We provide a seamless and reliable parcel tracking experience. Here's why you should choose PILOT:</p>
-            <ul>
-                <li>Fast and Accurate Tracking</li>
-                <li>Secure and Efficient Delivery Services</li>
-                <li>24/7 Customer Support</li>
-            </ul>
+    <div class="essential-section w-full px-12 bg-gray-100 py-8">
+
+        <h2 class="text-3xl font-bold mb-4">FAQs</h2>
+
+        <!-- pointer cursur on hover -->
+        <div class="mb-4 border-b border-gray-600 py-4 :hover cursor-pointer">
+            <details>
+                <summary class="text-lg font-semibold">How can I track my parcel?</summary>
+                <p class="mt-2 bg-gray-200 py-4 px-4">Simply enter your tracking ID in the search bar above, and click
+                    "Track."</p>
+            </details>
         </div>
-    
-        <div>
-            <h2>FAQs</h2>
-            <div>
-                <h3>How can I track my parcel?</h3>
-                <p>Simply enter your tracking ID in the search bar above, and click "Track."</p>
-            </div>
-            <div>
-                <h3>Is my personal information secure?</h3>
-                <p>Yes, we prioritize the security of your information. Your data is encrypted and handled with utmost care.</p>
-            </div>
-            <div>
-                <h3>What if I encounter issues with tracking?</h3>
-                <p>Contact our support team at support@pilottracking.com for assistance.</p>
-            </div>
+
+        <div class="mb-4 border-b border-gray-600 py-4 :hover cursor-pointer">
+            <details>
+                <summary class="text-lg font-semibold">Is my personal information secure?</summary>
+                <p class="mt-2 bg-gray-200 py-4 px-4">Yes, we prioritize the security of your information. Your data is
+                    encrypted and
+                    handled with
+                    utmost care.</p>
+            </details>
         </div>
-    
-        <!-- Add more relevant sections as needed -->
-    
+
+        <div class="mb-4 border-b border-gray-600 py-4 :hover cursor-pointer">
+            <details>
+                <summary class="text-lg font-semibold">What if I encounter issues with tracking?</summary>
+                <p class="mt-2 bg-gray-200 py-4 px-4">Contact our support team at support@pilottracking.com for
+                    assistance.</p>
+            </details>
+        </div>
+
     </div>
-    </div>
+
 
     <!-- Footer -->
-    <div class="footer">
-        <p>PILOT &copy; 2024</p>
-        <p>Locations: [Your Locations]</p>
-        <p>Socials: [Your Social Handles]</p>
-    </div>
+    <footer class="bg-[#333333] flex flex-col justify-center items-center text-white py-12">
+        <div class="w-3/4 flex flex-row">
+            <div>
+                <h2 class="text-4xl font-semibold mb-4">PILOT</h2>
+                <p class="mb-4 w-1/2">Explore our delivery services across various locations. Experience reliable and
+                    efficient
+                    delivery for your packages.</p>
+            </div>
 
-</body>
-</html>
+            <div class="flex flex-col ">
+                <p>Locations: [Your Locations]</p>
+                <div class="flex flex-row gap-4 mt-3">
+                    <i class="fa-brands fa-facebook text-2xl"></i>
+                    <i class="fa-brands fa-instagram text-2xl"></i>
+                    <i class="fa-solid fa-x text-2xl"></i>
+                    <i class="fa-brands fa-youtube text-2xl"></i>
+                </div>
+                <!-- Add more social handles or locations as needed -->
+            </div>
+        </div>
+        <!-- white hr -->
+        <hr class="w-3/4 border border-white my-4">
+        <p class="mt-4">&copy; 2024 PILOT. All rights reserved.</p>
+    </footer>
+
+
+</div>
+{% endblock %}
