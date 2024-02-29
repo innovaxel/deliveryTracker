@@ -34,45 +34,26 @@
             <input type="text" id="tracking_id" placeholder="tracking_id" name="tracking_id"
                 class="w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-1 px-3 block appearance-none leading-normal focus:border-blue-400">
             <input type="submit" value="Track Order"
-                class="w-full bg-[#FF4B00] mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md cursor-pointer">
+                class="w-full bg-[#FF4B00] text-white mt-4 hover:bg-white hover:text-[#FF4B00] hover:border hover:border-[#FF4B00] font-bold py-2 px-4 rounded-md cursor-pointer">
         </form>
         {% if order %}
-        <div class="mt-8 px-12">
-            <h3 class="text-2xl font-semibold mb-4">Order Details for Tracking ID: {{ tracking_id }}</h3>
+        <div class="mt-8 px-12 bg-gray-300 py-10 rounded-lg shadow-lg">
+            <h3 class="text-2xl font-semibold mb-6 shadow-lg p-4">Order Details for Tracking ID: {{ tracking_id }}</h3>
 
-            <table class="table-auto w-full">
-                <thead class="bg-[#333333] text-white rounded-t-lg">
-                    <tr>
-                        <th class="px-2 py-1">Order ID</th>
-                        <th class="px-2 py-1">Tracking ID</th>
-                        <th class="px-2 py-1">Order Date</th>
-                        <th class="px-2 py-1">Receiver Name</th>
-                        <th class="px-2 py-1">Receiver Address</th>
-                        <th class="px-2 py-1">Receiver Email</th>
-                        <th class="px-2 py-1">Sender Name</th>
-                        <th class="px-2 py-1">Sender Address</th>
-                        <th class="px-2 py-1">Sender Email</th>
-                        <th class="px-2 py-1">Receiver Phone</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for item in order %}
-                    <tr>
-                        <td class="border px-2 py-1">{{ item.order_id }}</td>
-                        <td class="border px-2 py-1">{{ item.tracking_id }}</td>
-                        <td class="border px-2 py-1">{{ item.order_date }}</td>
-                        <td class="border px-2 py-1">{{ item.receiver_name }}</td>
-                        <td class="border px-2 py-1">{{ item.receiver_address }}</td>
-                        <td class="border px-2 py-1">{{ item.receiver_email }}</td>
-                        <td class="border px-2 py-1">{{ item.sender_name }}</td>
-                        <td class="border px-2 py-1">{{ item.sender_address }}</td>
-                        <td class="border px-2 py-1">{{ item.receiver_email }}</td>
-                        <td class="border px-2 py-1">{{ item.receiver_phone }}</td>
-                        <!-- Add other fields as needed -->
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            {% for item in order %}
+            <div class="flex flex-col mt-6 justify-center">
+                <p class="text-md flex flex-row border-b-2 border-gray-100"><span class="font-semibold text-lg w-40 pr-4 py-1 text-right w-24">Tracking ID </span>: <span class="ml-5 text-lg"> {{ item.tracking_id }}</span></p>
+                <p class="text-md flex flex-row border-b-2 border-gray-100"><span class="font-semibold text-lg w-40 pr-4 py-1 text-right w-24">Order Date </span>: <span class="ml-5 text-lg"> {{ item.order_date }}</span></p>
+                <p class="text-md flex flex-row border-b-2 border-gray-100"><span class="font-semibold text-lg w-40 pr-4 py-1 text-right w-24">Receiver Name </span>: <span class="ml-5 text-lg"> {{ item.receiver_name }}</span></p>
+                <p class="text-md flex flex-row border-b-2 border-gray-100"><span class="font-semibold text-lg w-40 pr-4 py-1 text-right w-24">Receiver Address </span>: <span class="ml-5 text-lg"> {{ item.receiver_address }}</span></p>
+                <p class="text-md flex flex-row border-b-2 border-gray-100"><span class="font-semibold text-lg w-40 pr-4 py-1 text-right w-24">Receiver Email </span>: <span class="ml-5 text-lg"> {{ item.receiver_email }}</span></p>
+                <p class="text-md flex flex-row border-b-2 border-gray-100"><span class="font-semibold text-lg w-40 pr-4 py-1 text-right w-24">Sender Name </span>: <span class="ml-5 text-lg"> {{ item.sender_name }}</span></p>
+                <p class="text-md flex flex-row border-b-2 border-gray-100"><span class="font-semibold text-lg w-40 pr-4 py-1 text-right w-24">Sender Address </span>: <span class="ml-5 text-lg"> {{ item.sender_address }}</span></p>
+                <p class="text-md flex flex-row border-b-2 border-gray-100"><span class="font-semibold text-lg w-40 pr-4 py-1 text-right w-24">Receiver Email </span>: <span class="ml-5 text-lg"> {{ item.receiver_email }}</span></p>
+                <p class="text-md flex flex-row"><span class="font-semibold text-lg w-40 pr-4 py-1 text-right w-24">Receiver Phone </span>: <span class="ml-5"> {{ item.receiver_phone }}</span></p>
+
+            </div>
+            {% endfor %}
         </div>
         {% endif %}
 
@@ -82,7 +63,8 @@
     <div class="flex flex-col justify-center items-center gap-6 py-12">
         <div class="text-center">
             <h2 class="text-2xl font-bold text-[#333333]">Why Choose Us?</h2>
-            <p class="text-center text-lg text-[#333333]">We provide a seamless and reliable parcel tracking experience.
+            <p class="text-center text-lg text-[#333333]">We provide a seamless and reliable parcel tracking
+                experience.
                 Here's why you should choose PILOT:
             </p>
         </div>
@@ -112,7 +94,8 @@
         <div class="mb-4 border-b border-gray-600 py-4 :hover cursor-pointer">
             <details>
                 <summary class="text-lg font-semibold">How can I track my parcel?</summary>
-                <p class="mt-2 bg-gray-200 py-4 px-4">Simply enter your tracking ID in the search bar above, and click
+                <p class="mt-2 bg-gray-200 py-4 px-4">Simply enter your tracking ID in the search bar above, and
+                    click
                     "Track."</p>
             </details>
         </div>
@@ -120,7 +103,8 @@
         <div class="mb-4 border-b border-gray-600 py-4 :hover cursor-pointer">
             <details>
                 <summary class="text-lg font-semibold">Is my personal information secure?</summary>
-                <p class="mt-2 bg-gray-200 py-4 px-4">Yes, we prioritize the security of your information. Your data is
+                <p class="mt-2 bg-gray-200 py-4 px-4">Yes, we prioritize the security of your information. Your data
+                    is
                     encrypted and
                     handled with
                     utmost care.</p>
@@ -143,7 +127,8 @@
         <div class="w-3/4 flex flex-row">
             <div>
                 <h2 class="text-4xl font-semibold mb-4">PILOT</h2>
-                <p class="mb-4 w-1/2">Explore our delivery services across various locations. Experience reliable and
+                <p class="mb-4 w-1/2">Explore our delivery services across various locations. Experience reliable
+                    and
                     efficient
                     delivery for your packages.</p>
             </div>
