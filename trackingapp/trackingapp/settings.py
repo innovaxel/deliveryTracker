@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-9(x&*e$$1=l2$e_mu%xm4o-2gjd8$zkn6rs3=l^u$!9*uwpc_9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['http://pilotdelivery.net']
 
 
 # Application definition
@@ -126,6 +126,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"] # new
 
+STATIC_ROOT = str(BASE_DIR)+'/static/'
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
