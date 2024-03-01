@@ -50,15 +50,50 @@ def add_order(request):
         subject = "Your Order has been placed"
         email_body = f"""
         <html>
-        <body style="font-family: Arial, sans-serif; font-size: 16px; color: black;">
-            <h1 style="color: #002600;">Your Order has been placed.</h1>
-            <h2>Your Tracking Id : {tracking_id}</h2>
-            <p>Please visit this link to track your order. </p>
-            <p>Have a Great Day.</p>
-            <p>Team PILOT</p>
+        <head>
+            <style>
+                body {{
+                    font-family: 'Arial', sans-serif;
+                    font-size: 16px;
+                    color: #333;
+                    margin: 0;
+                    padding: 0;
+                    background-color: #f5f5f5;
+                }}
+                .container {{
+                    max-width: 600px;
+                    margin: 20px auto;
+                    padding: 20px;
+                    background-color: #fff;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                    border-radius: 8px;
+                }}
+                h1 {{
+                    color: #002600;
+                    font-size: 24px;
+                }}
+                h2 {{
+                    color: #333;
+                    font-size: 20px;
+                }}
+                p {{
+                    margin: 10px 0;
+                    line-height: 1.6;
+                }}
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <h1>Your Order has been placed.</h1>
+                <h2>Your Tracking Id: {tracking_id}</h2>
+                <p>Please visit this link to track your order: <a href="https://pilotdelivery.ne" style="color: #1e90ff;">pilotdelivery.ne</a></p>
+                <p>Have a Great Day.</p>
+                <p>Best Regards,<br>Team PILOT</p>
+            </div>
         </body>
         </html>
         """
+
 
         sender = EMAIL_HOST_USER
         recipients = [receiver_email]

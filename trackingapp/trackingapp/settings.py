@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-9(x&*e$$1=l2$e_mu%xm4o-2gjd8$zkn6rs3=l^u$!9*uwpc_9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['http://pilotdelivery.net']
+ALLOWED_HOSTS = ['127.0.0.1','pilotdelivery.net']
 
 
 # Application definition
@@ -116,23 +116,23 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"] # new
+STATIC_URL = "/stadtic/"
+STATICFILES_DIRS = [BASE_DIR / "stdatic"] # new
 
-STATIC_ROOT = str(BASE_DIR)+'/static/'
+
+STATIC_ROOT = "/home/piloabbe/public_html/static/"
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_PORT = "465"
-EMAIL_HOST_USER = "shahid.habib791@gmail.com"
-EMAIL_HOST_PASSWORD = "rybgxvrmhymssjsi"
+EMAIL_HOST = "mail.privateemail.com"
+EMAIL_PORT = 465
+EMAIL_HOST_USER = "info@pilotdelivery.net"
+EMAIL_HOST_PASSWORD = "Info@pilot!"
 EMAIL_USE_SSL = True
 EMAIL_USE_TLS = False
 
