@@ -7,9 +7,7 @@
 <head>
   <meta charset="utf-8" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <!-- load static for css -->
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -22,23 +20,69 @@
 </head>
 
 <body>
+
   <nav class="bg-[#333333] flex flex-row py-4 px-10 justify-between">
-    <h1 class="text-2xl text-white">
-      PILOT</h1>
-      <a href="https://innovaxel.com" style="display: none;">Developed By Innovaxel</a>
+    <a href="{% url 'search_order' %}" class="flex flex-row gap-2">
+      <h1 class="text-2xl text-white">PILOT</h1>
+    </a>
     <div>
+      {% if request.path != '/add_order/' %}
       <form method="post" action="{% url 'search_order' %}" class="flex flex-row gap-2">
         {% csrf_token %}
-        <input type="text" id="tracking_id" placeholder="tracking_id" name="tracking_id"
-          class="block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-1 px-3 block appearance-none leading-normal focus:border-blue-400">
-        <button
-          class="bg-[#FF4B00] text-white hover:bg-white hover:text-[#FF4B00] hover:border hover:border-[#FF4B00] font-bold py-1 px-3 rounded-md cursor-pointer">
+        <input type="text" id="tracking_id" placeholder="tracking_id" name="tracking_id" class="block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-1 px-3 block appearance-none leading-normal focus:border-blue-400">
+        <button class="bg-[#FF4B00] text-white hover:bg-white hover:text-[#FF4B00] hover:border hover:border-[#FF4B00]  py-1 px-3 rounded-md cursor-pointer">
           Search</button>
       </form>
     </div>
+    <button class="bg-[#FF4B00] text-white hover:bg-white hover:text-[#FF4B00] hover:border hover:border-[#FF4B00]  py-1 px-3 rounded-md cursor-pointer">
+      <a href="{% url 'add_order' %}">Add Order</a>
+    </button>
+    {% endif %}
 
   </nav>
   {% block content %}{% endblock %}
+  <!-- Footer -->
+  <footer class="bg-[#333333] flex flex-col justify-center items-center text-white py-12">
+    <div class="w-3/4 flex flex-row">
+      <div>
+        <h2 class="text-4xl font-semibold mb-4">PILOT</h2>
+        <p class="mb-4 w-1/2">Explore our delivery services across various locations. Experience reliable
+          and
+          efficient
+          delivery for your packages.</p>
+      </div>
+
+      <div class="flex flex-col ">
+        <!-- <p>Locations: [Your Locations]</p>
+        <div class="flex flex-row gap-4 mt-3">
+          <i class="fa-brands fa-facebook text-2xl"></i>
+          <i class="fa-brands fa-instagram text-2xl"></i>
+          <i class="fa-solid fa-x text-2xl"></i>
+          <i class="fa-brands fa-youtube text-2xl"></i>
+        </div> -->
+        <h1 class="text-2xl font-semibold mb-4">Contact Us</h1>
+        <div class="flex flex-col gap-2">
+          <p><i class="fa-solid fa-phone text-xl mr-2"></i><a href="tel:+2341234567890">+234 123 456 7890</a></p>
+          <p><i class="fa-solid fa-envelope text-xl mr-2"></i><a href="mailto:info@pilotdelivery.net">info@pilotdelivery.net</a></p>
+          <p>
+            <i class="fa-solid fa-location-crosshairs text-xl mr-2"></i>
+            <a href="https://www.google.com/maps/search/?api=1&query=4845+Transit+Rd+%23I10,+Depew,+New+York,+14043" target="_blank">
+              4845 Transit Rd #I10 <br>
+              Depew, New York (NY), 14043
+            </a>
+          </p>
+        </div>
+
+      </div>
+    </div>
+    <!-- white hr -->
+    <hr class="w-3/4 border border-white my-8">
+    <h4 class="mt-4">&copy; 2024 PILOT. All rights reserved.</h4>
+    <a href="https://innovaxel.com" style="display: none;">Developed By Innovaxel</a>
+
+  </footer>
+
+  <script type="text/javascript" class="w-96 h-96" id="zsiqchat">var $zoho = $zoho || {}; $zoho.salesiq = $zoho.salesiq || { widgetcode: "siq1884c2a3e0c37c595723a2eed3606258a3d787277d3e284e82e1a2629ef2b0cf", values: {}, ready: function () { } }; var d = document; s = d.createElement("script"); s.type = "text/javascript"; s.id = "zsiqscript"; s.defer = true; s.src = "https://salesiq.zohopublic.com/widget"; t = d.getElementsByTagName("script")[0]; t.parentNode.insertBefore(s, t);</script>
 </body>
 
 </html>
